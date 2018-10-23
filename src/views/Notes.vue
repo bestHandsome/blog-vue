@@ -29,3 +29,27 @@
         </v-layout>
     </v-container>
 </template>
+<script>
+     export default {
+       data() {
+          return {
+            baseUrl: 'https://www.zsy-love-xj.work/api',
+            notes: []
+          }
+       },
+
+       methods: {
+         refreshData() {
+           this.$http.get(this.baseUrl + '/someUrl').then(res => {
+             // get body data
+             this.notes = res.body;
+           }, error => {
+           });
+         }
+       },
+
+       onLoad() {
+         this.refreshData();
+       },
+     }
+</script>
